@@ -7,8 +7,14 @@ on:
     branches:
       - main
 
+env:
+  BACKEND_DIRECTORY: backend
+
 jobs:
   tests:
+    defaults:
+      run:
+        working-directory: ${{ env.BACKEND_DIRECTORY }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +28,9 @@ jobs:
 
   lint-check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.BACKEND_DIRECTORY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
